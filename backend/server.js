@@ -36,7 +36,6 @@ io.on('connection', (socket) => {
   })
 })
 
-// Middleware
 app.use(express.json({ limit: '4mb' }))
 app.use(cors())
 
@@ -45,10 +44,11 @@ app.use('/api/status', (req, res) => res.send('server is live'))
 app.use('/api/auth', userRouter)
 app.use('/api/messages', messageRouter)
 
-// Connect DB and start server
 await connectDB()
 
-const PORT = process.env.PORT || 5000
-server.listen(PORT, () => {
-  console.log('server is running on Port', PORT)
-})
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000
+  server.listen(PORT, () => console.log('server is running on Port', PORT))
+}
+
+export default server

@@ -20,7 +20,7 @@ export const getUsersForSideBar = async (req, res) => {
         res.json({ success: true, user: filteredUsers, unseenMessage })
     } catch (error) {
         console.error("Error fetching users:", error.message);
-        res.status(500).json({
+        res.json({
             success: false,
             message: "Server error",
             error: error.message
@@ -46,7 +46,7 @@ export const getMessages = async (req, res) => {
     } catch (error) {
     
         console.error("Error fetching messages:", error.message);
-        res.status(500).json({ success: false, message: "Server Error", error: error.message });
+        res.json({ success: false, message: "Server Error", error: error.message });
     }
 }
 
@@ -57,7 +57,7 @@ export const markMessageAsSeen = async (req, res) => {
         res.json({success:true})
     }catch(error){
            console.error("Error fetching messages:", error.message);
-        res.status(500).json({ success: false, message: "Server Error", error: error.message });
+        res.json({ success: false, message: "Server Error", error: error.message });
     }
 }
 
